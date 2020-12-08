@@ -3,7 +3,6 @@ import math
 
 def merge_max_heaps(A1, A2):
     A = A1 + A2
-    print(A)
     i = len(A)-1
     while i > 0:
         pi = math.floor((i-1)/2)
@@ -15,4 +14,5 @@ def merge_max_heaps(A1, A2):
 
 A1 = [10, 7, 6]
 A2 = [12, 8, 5]
+print(A1+A2)
 print(merge_max_heaps(A1, A2))
