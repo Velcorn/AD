@@ -2,8 +2,9 @@ import numpy as np
 from scipy.optimize import linear_sum_assignment
 
 
-'''def max_value(M):
+def max_value(M):
     M2 = subtract_means(M)
+    # print(M2)
     Z = np.zeros(6)
     rows = np.zeros(6)
     cols = np.zeros(6)
@@ -15,7 +16,7 @@ from scipy.optimize import linear_sum_assignment
 def subtract_means(M):
     M2 = np.copy(M)
     M2 = M2 - np.mean(M2, axis=0) - np.mean(M2, axis=1) - np.mean(M2)
-    return M2'''
+    return M2
 
 
 M = np.array([[8, 5, 17, 13, 9, 1],
@@ -24,8 +25,9 @@ M = np.array([[8, 5, 17, 13, 9, 1],
               [4, 2, 2, 4, 1, 4],
               [11, 11, 5, 9, 4, 10],
               [2, 7, 16, 9, 7, 5]])
-# print(max_value(M))
+print(max_value(M))
 
 row, col = linear_sum_assignment(M, maximize=True)
-print(f"Coordinates: {list(zip(row, col))}")
+'''print(f"Coordinates: {list(zip(row, col))}")
 print(f"Max sum: {M[row, col].sum()}")
+'''

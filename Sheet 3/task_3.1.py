@@ -12,7 +12,7 @@ def merge_max_heaps(A1, A2):
     return A
 
 
-A1 = [10, 7, 6]
-A2 = [12, 8, 5]
+A1 = [10, 7, 6, 4, 3]
+A2 = [12, 8, 5, 2, 1]
 print(A1+A2)
 print(merge_max_heaps(A1, A2))
