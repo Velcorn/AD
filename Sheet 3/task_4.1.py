@@ -1,22 +1,24 @@
-def calc_max_value(M):
-    max_value = 0
-    Z = [0, 1, 2, 3, 4, 5]
+def max_value(M):
+    mv = 0
+    Z = [i for i in range(len(M))]
     for p in permutations(Z):
-        val = 0
+        v = 0
         for i in range(len(M)):
-            val += M[i][p[i]]
-        if val > max_value:
-            max_value = val
-    return max_value
+            v += M[i][p[i]]
+        if v > mv:
+            mv = v
+    return mv
 
 
-def permutations(lst):
-    if len(lst) <= 1:
-        yield lst
+def permutations(A):
+    perms = []
+    if len(A) <= 1:
+        perms.append(A)
     else:
-        for p in permutations(lst[1:]):
-            for i in range(len(lst)):
-                yield p[:i] + lst[0:1] + p[i:]
+        for p in permutations(A[1:]):
+            for i in range(len(A)):
+                perms.append(p[:i] + A[0:1] + p[i:])
+    return perms
 
 
 M = [[8, 5, 17, 13, 9, 1],
@@ -26,4 +28,4 @@ M = [[8, 5, 17, 13, 9, 1],
      [11, 11, 5, 9, 4, 10],
      [2, 7, 16, 9, 7, 5]]
 
-print(calc_max_value(M))
+print(max_value(M))
