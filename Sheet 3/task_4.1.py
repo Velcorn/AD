@@ -6,8 +6,9 @@ def max_value(M):
         for i in range(len(M)):
             v += M[i][p[i]]
         if v > mv:
+            Z = p
             mv = v
-    return mv
+    return Z, mv
 
 
 def permutations(A):
