@@ -5,7 +5,7 @@ def merge_max_heaps(A1, A2):
     A = A1 + A2
     i = len(A)-1
     while i > 0:
-        pi = math.floor((i-1)/2)
+        pi = math.floor(i/2)
         if A[i] > A[pi]:
             A[i], A[pi] = A[pi], A[i]
         i -= 1
