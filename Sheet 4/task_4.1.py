@@ -1,9 +1,12 @@
 def in_range(A, a, b):
-	return len([n for n in A if a <= n <= b])
-
-
-A = [1, 1, 2, 3, 5, 8, 9, 4]
-# print(in_range(A, 1, 5))
+	count, k = process_array(A)
+	print(count, k)
+	if b > k:
+		b = k
+	if a <= 0:
+		return count[b]
+	else:
+		return count[b] - count[a-1]
 
 
 def process_array(A):
@@ -16,7 +19,17 @@ def process_array(A):
 			count[n] = 1
 		if n > k:
 			k = n
-	return count
+	for i in range(k, -1, -1):
+		for j in range(-1, i):
+			if i in count:
+				try:
+					count[i] += count[j]
+				except KeyError:
+					pass
+			else:
+				count[i] = 0
+	return count, k
 
 
-print(process_array(A))
+A = [1, 1, 2, 3, 5, 8, 9, 4]
+print(in_range(A, -1, 10))
