@@ -1,32 +1,38 @@
 def wichtel_sort(a, b, c, d, e):
-    if a < b:
+    # Sort a, b and c, d
+    if b < a:
         a, b = b, a
-    if c < d:
+    if d < c:
         c, d = d, c
-    if a < c:
-        a, c = c, a
-        b, d = d, b
-    if e < c:
-        if d < e:
-            d, e = e, d
-    else:
+    # Sort pairs a, b and c, d by larger element
+    if d < b:
+        a, b, c, d = c, d, a, b
+    # Insert e into a, b, d
+    if e < b:
         if e < a:
-            c, d, e = e, c, d
+            a, b, c, d, e = e, a, b, d, c
         else:
-            a, c, d, e = e, a, c, d
-    if b < d:
-        if b < e:
-            return b, e, d, c, a
-        else:
-            return e, b, d, c, a
+            a, b, c, d, e = a, e, b, d, c
     else:
-        if b < c:
-            return e, d, b, c, a
+        if e < d:
+            a, b, c, d, e = a, b, e, d, c
         else:
-            return e, d, c, b, a
+            a, b, c, d, e = a, b, d, e, c
+    # Insert former c (now e) into its correct place.
+    if e < b:
+        if e < a:
+            a, b, c, d, e = e, a, b, c, d
+        else:
+            a, b, c, d, e = a, e, b, c, d
+    else:
+        if e < c:
+            a, b, c, d, e = a, b, e, c, d
+        else:
+            a, b, c, d, e = a, b, c, e, d
+    return a, b, c, d, e
 
 
 if __name__ == '__main__':
     from itertools import permutations
-
     assert all(list(wichtel_sort(*p)) == sorted(p) for p in permutations(range(5)))
+    print("Passed")
