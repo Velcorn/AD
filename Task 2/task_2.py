@@ -7,12 +7,12 @@ def calc(A, B):
             count[e] = 1
     s = ""
     for i in range(len(B)):
-        try:
+        if i in count:
             if count[i] <= B[i]:
                 s += "1"
             else:
                 s += "0"
-        except KeyError:
+        else:
             s += "1"
     return s
 
