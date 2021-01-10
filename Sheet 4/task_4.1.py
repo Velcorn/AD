@@ -18,14 +18,17 @@ def process_array(A):
 			count[n] = 1
 		if n > k:
 			k = n
-	for i in range(k, -1, -1):
-		for j in range(-1, i):
-			if i not in count:
-				count[i] = 0
-			if j in count:
-				count[i] += count[j]
+	count[-1] = 0
+	for i in range(k+1):
+		if i in count:
+			count[i] += count[i-1]
+		else:
+			count[i] = count[i-1]
 	return count, k
 
 
 A = [1, 1, 2, 3, 5, 8, 9, 4]
-print(in_range(A, 1, 5))
+print(process_array(A))
+print(in_range(A, 1, 10))
+print(in_range(A, 0, 9))
+print(in_range(A, 1, 9))
