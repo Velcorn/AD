@@ -13,14 +13,14 @@ def process_array(A):
 	for n in A:
 		if n > k:
 			k = n
-	# Get count of each array element and largest array element.
-	count = [0]*(k+1)
+	# Get count of each array element.
+	C = [0]*(k+1)
 	for n in A:
-		count[n] += 1
+		C[n] += 1
 	# Get count of elements from 0 to n for every element n.
 	for i in range(1, k+1):
-		count[i] += count[i-1]
-	return count, k
+		C[i] += C[i-1]
+	return C, k
 
 
 A = [1, 1, 2, 3, 5, 8, 9, 4]
