@@ -1,30 +1,24 @@
 def calc(N, A):
     visited = set()
     table = [0] * (N + 1)
-    adj = dict()
+    children = [[] for i in range(N)]
     for e in A:
-        if e[0] in adj:
-            adj[e[0]].append(e[1])
-        else:
-            adj[e[0]] = [e[1]]
+        children[e[0]-1].append(e[1])
     for v in range(1, N + 1):
         if v not in visited:
-            helper(v, adj, table, visited)
+            helper(v, children, table, visited)
     count = 0
     for i in range(1, N + 1):
         count = max(count, table[i])
     return count
 
 
-def helper(v, adj, table, visited):
+def helper(v, children, table, visited):
     visited.add(v)
-    try:
-        for w in adj[v]:
-            if w not in visited:
-                helper(w, adj, table, visited)
-            table[v] = max(table[v], table[w]+1)
-    except KeyError:
-        pass
+    for w in children[v-1]:
+        if w not in visited:
+            helper(w, children, table, visited)
+        table[v] = max(table[v], table[w]+1)
 
 
 print(calc(3, [[1, 2], [2, 3]]))
