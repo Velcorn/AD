@@ -6,7 +6,8 @@ def longest_ascending_subsequence(A):
     return l, max(l)
 
 
-A = [1, 2, 3, 4, 5, 4, 3, 2, 1]
+A = [1, 3, 5, 7, 9, 1, 2, 3, 4]
 print(A)
 print(longest_ascending_subsequence(A))
+print(A[::-1])
 print(longest_ascending_subsequence(A[::-1]))
