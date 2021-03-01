@@ -18,7 +18,7 @@ def permutations(A):
     else:
         for p in permutations(A[1:]):
             for i in range(len(A)):
-                perms.append(p[:i] + A[0:1] + p[i:])
+                perms.append(p[:i] + [A[0]] + p[i:])
     return perms
 
 
