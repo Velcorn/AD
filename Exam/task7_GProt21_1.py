@@ -1,8 +1,7 @@
 def max_profit(W, n):
     G = [0 for x in range(n+1)]
     G[0] = W[0]
-    G[1] = max(W[0], W[1])
-    for i in range(0, n+1):
+    for i in range(1, n+1):
         G[i] = max(G[i-1], W[i] + G[i-2])
     print(G)
     return G[n]
