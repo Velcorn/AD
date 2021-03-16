@@ -9,12 +9,35 @@ def min_coins(C, V):
                 table[i][j] = table[i-1][j]
             else:
                 table[i][j] = min(table[i-1][j], table[i][j-C[i-1]] + 1)
+
+    # Recursion magic.
+    used_coins = calc_used_coins(table, [], V, n)
+
+    # Silly printing stuff.
+    for i, line in enumerate(table):
+        for j, num in enumerate(line):
+            if num < 10:
+                table[i][j] = f" {num}"
     for i in range(n+1):
         if i == 0:
-            print(" ", table[i])
+            print("   |", "  ".join(map(str, table[i])))
+            print("----" + "----" * len(table[i]))
         else:
-            print(C[i-1], table[i])
-    return f"Min number of coins: {table[n][V]}"
+            print(f" {C[i-1]} |" if C[i-1] < 10 else f"{C[i-1]} |", "  ".join(map(str, table[i])))
+    print(f"\nMin number of coins: {table[n][V]}")
+    return "Used coin(s): " + ", ".join(map(str, sorted(used_coins, reverse=True)))
+
+
+# "Calculate" which coins are used to reach value.
+def calc_used_coins(table, used_coins, pos, n):
+    while True:
+        if pos == 0:
+            return used_coins
+        elif table[n][pos] < table[n - 1][pos]:
+            used_coins.append(C[n - 1])
+            pos -= C[n - 1]
+        else:
+            return calc_used_coins(table, used_coins, pos, n - 1)
 
 
 def min_coins_gfg(C, V):
@@ -31,6 +54,6 @@ def min_coins_gfg(C, V):
 
 
 C = [1, 5, 6, 9]
-V = 11
+V = 20
 print(min_coins(C, V))
 # print(min_coins_gfg(C, V))
