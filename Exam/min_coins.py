@@ -12,6 +12,18 @@ def min_coins(C, V):
     # Recursion magic.
     used_coins = calc_used_coins(table, [], V, n)
 
+    # List to dict of occurrences.
+    used_coins_dict = {}
+    for c in used_coins:
+        if c in used_coins_dict:
+            used_coins_dict[c] += 1
+        else:
+            used_coins_dict[c] = 1
+
+    # Check if solution is valid.
+    if sum(used_coins) != V:
+        return "\nNo solution!"
+
     # Silly printing stuff.
     for i, line in enumerate(table):
         for j, num in enumerate(line):
@@ -23,18 +35,21 @@ def min_coins(C, V):
             print("----" + "----" * len(table[i]))
         else:
             print(f" {C[i-1]} |" if C[i-1] < 10 else f"{C[i-1]} |", "  ".join(map(str, table[i])))
-    if sum(used_coins) != V:
-        return "\nNo solution!"
+
+    # Return min num of coins and used coins.
     print(f"\nMin number of coins: {table[n][V]}")
-    return "Used coin(s): " + ", ".join(map(str, sorted(used_coins, reverse=True)))
+    return "Used coin(s): " + \
+           ", ".join(map(str, list(f"{used_coins_dict[i]}x {i}" for i in sorted(used_coins_dict, reverse=True))))
 
 
 # "Calculate" which coins are used to reach value.
 def calc_used_coins(table, used_coins, pos, n):
     while n != 0:
         if n == 1:
-            used_coins.append(C[n-1])
-            pos -= C[n-1]
+            while pos != 0:
+                if table[n][pos] == table[n-1][pos]:
+                    used_coins.append(C[n-1])
+                pos -= C[n-1]
             return used_coins
         elif table[n][pos] < table[n-1][pos]:
             used_coins.append(C[n-1])
@@ -56,7 +71,7 @@ def min_coins_gfg(C, V):
     return table, table[V]
 
 
-C = [3, 5, 6, 9]
-V = 7
+C = [1, 5, 6, 8]
+V = 111
 print(min_coins(C, V))
 # print(min_coins_gfg(C, V))
