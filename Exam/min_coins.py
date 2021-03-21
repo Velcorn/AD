@@ -72,6 +72,6 @@ def min_coins_gfg(C, V):
 
 
 C = [1, 5, 6, 8]
-V = 111
+V = 11
 print(min_coins(C, V))
 # print(min_coins_gfg(C, V))

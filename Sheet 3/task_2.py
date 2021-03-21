@@ -1,7 +1,7 @@
 def quicksort(A, l, r):
     if l < r:
         p = partition(A, l, r)
-        print(A)
+        print(A, p)
         quicksort(A, l, p-1)
         quicksort(A, p+1, r)
 
@@ -17,6 +17,6 @@ def partition(A, l, r):
     return i+1
 
 
-# A = [12, 10, 6, 3, 1, 14, 9]
-A = [15, 33, 17, 8, 3, 2, 1]
+A = [12, 10, 6, 3, 1, 14, 9]
+# A = [15, 33, 17, 8, 3, 2, 1]
 print(quicksort(A, 0, len(A)-1))
