@@ -34,5 +34,5 @@ def heap_sort(arr):
     return arr
 
 
-arr = [17, 12, 5, 14, 3, 20]
+arr = [23, 13, 7, 17, 2, 20]
 print(heap_sort(arr))
